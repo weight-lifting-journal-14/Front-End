@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Button } from "reactstrap";
 
 function RegisterPage() {
   const [userName, setUserName] = useState("");
@@ -30,7 +31,7 @@ function RegisterPage() {
           type="email"
           placeholder="Email"
           onChange={e => {
-            setUserPass(e.target.value);
+            setUserEmail(e.target.value);
           }}
         />
         <button>Submit</button>

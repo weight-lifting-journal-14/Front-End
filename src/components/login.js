@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
-import { MyDiv } from "./Style";
+import { MyDiv } from "../Style";
 import { axiosWithAuth } from "../axiosAuth";
 
 function Login(props) {
@@ -22,6 +22,7 @@ function Login(props) {
       .then(res => {
         console.log(res);
         localStorage.setItem("token", res.data.token);
+        props.setAuthenticated(true);
         props.history.push("/home");
       });
   };

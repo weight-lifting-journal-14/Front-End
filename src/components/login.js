@@ -1,15 +1,27 @@
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
+import { axiosWithAuth } from '../axiosAuth';
 
-function Login() {
+function Login(props) {
   const [username, setusername] = useState("");
   const [userpass, setuserpass] = useState("");
 
   console.log(username);
   console.log(userpass);
 
-  const handleSubmit = () => {
-    alert("Bam Sent! " + username);
+  const user = {
+    username: username,
+    password: userpass,
+  }
+
+  const handleSubmit = e => {
+    e.preventDefault();
+    axiosWithAuth().post("/api/auth/login", user)
+    .then(res => {
+      console.log(res)
+      localStorage.setItem('token', res.data.token);
+      props.history.push("/home")
+    })
   };
 
   return (

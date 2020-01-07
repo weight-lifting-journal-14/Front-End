@@ -13,28 +13,38 @@ import {
 const NavBar = props => {
     const [isOpen, setIsOpen] = useState(false);
     const toggle = () => setIsOpen(!isOpen);
+    const isLoggedIn = () => {
+
+        return props.isAuthenticated ?
+          <Nav className="mr-auto" navbar>
+                <NavItem>
+                <NavLink tag={Link} to="/home">Home</NavLink>
+                </NavItem>
+                <NavItem>
+                <NavLink tag={Link} to="/profile">Profile</NavLink>
+                </NavItem>
+                <NavItem>
+                <NavLink tag={Link} to="/logout">Logout</NavLink>
+                </NavItem>
+            </Nav>
+    
+          :
+    
+          <Nav className="mr-auto" navbar>
+                <NavItem>
+                <NavLink tag={Link} to="/home">Home</NavLink>
+                </NavItem>
+                <NavItem>
+                <NavLink tag={Link} to="/">Login</NavLink>
+                </NavItem>
+            </Nav>
+      };
 
     return(
         <div>
             <Navbar color="light" light expand="md">
                 <NavbarBrand href="/">Weight Lifting Journal</NavbarBrand>
-                <NavbarToggler onClick={toggle} />
-                <Collapse isOpen={isOpen} navbar>
-                <Nav className="mr-auto" navbar>
-                    <NavItem>
-                    <NavLink tag={Link} to="/home">Home</NavLink>
-                    </NavItem>
-                    <NavItem>
-                    <NavLink tag={Link} to="/profile">Profile</NavLink>
-                    </NavItem>
-                    <NavItem>
-                    <NavLink tag={Link} to="/">Login</NavLink>
-                    </NavItem>
-                    <NavItem>
-                    <NavLink tag={Link} to="/logout">Logout</NavLink>
-                    </NavItem>
-                </Nav>
-                </Collapse>
+                {isLoggedIn()}
             </Navbar>
         </div>
     )

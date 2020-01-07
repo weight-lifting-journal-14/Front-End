@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Button } from "reactstrap";
 import { axiosWithAuth } from "../axiosAuth";
 
-function RegisterPage() {
+function RegisterPage(props) {
   const [userName, setUserName] = useState("");
   const [userPass, setUserPass] = useState("");
   const [userEmail, setUserEmail] = useState("");
@@ -19,6 +19,7 @@ function RegisterPage() {
       .post("/api/auth/register", user)
       .then(res => {
         console.log(res);
+        props.history.push("/");
       });
   };
 

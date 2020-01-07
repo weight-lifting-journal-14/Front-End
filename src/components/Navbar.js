@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import {
   Collapse,
@@ -12,7 +12,6 @@ import {
 
 const NavBar = props => {
     const [isOpen, setIsOpen] = useState(false);
-
     const toggle = () => setIsOpen(!isOpen);
 
     return(
@@ -23,10 +22,16 @@ const NavBar = props => {
                 <Collapse isOpen={isOpen} navbar>
                 <Nav className="mr-auto" navbar>
                     <NavItem>
-                    <NavLink tag={Link} to="/components/">Link</NavLink>
+                    <NavLink tag={Link} to="/home">Home</NavLink>
                     </NavItem>
                     <NavItem>
-                    <NavLink tag={Link} to="https://github.com/reactstrap/reactstrap">Link</NavLink>
+                    <NavLink tag={Link} to="/profile">Profile</NavLink>
+                    </NavItem>
+                    <NavItem>
+                    <NavLink tag={Link} to="/">Login</NavLink>
+                    </NavItem>
+                    <NavItem>
+                    <NavLink tag={Link} to="/logout">Logout</NavLink>
                     </NavItem>
                 </Nav>
                 </Collapse>

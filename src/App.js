@@ -5,14 +5,16 @@ import Login from "./login";
 import Register from "./RegisterPage";
 import "./App.css";
 import NavBar from "./components/Navbar";
+import UserLog from './components/Forms/UserLog';
 
 function App() {
   return (
     <div className="App">
       <NavBar />
-      <Route exact path="/">
+      <UserLog/>
+      {/* <Route exact path="/">
         <Login />
-      </Route>
+      </Route> */}
       <Route path="/Register">
         <Register />
       </Route>

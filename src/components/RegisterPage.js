@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Button } from "reactstrap";
 import { axiosWithAuth } from "../axiosAuth";
 
@@ -8,7 +8,6 @@ function RegisterPage(props) {
   const [userEmail, setUserEmail] = useState("");
 
   const user = {
-    id: Date.now(),
     username: userName,
     password: userPass
   };

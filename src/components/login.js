@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
-import { axiosWithAuth } from '../axiosAuth';
+import { MyDiv } from "./Style";
+import { axiosWithAuth } from "../axiosAuth";
 
 function Login(props) {
   const [username, setusername] = useState("");
@@ -11,49 +12,52 @@ function Login(props) {
 
   const user = {
     username: username,
-    password: userpass,
-  }
+    password: userpass
+  };
 
   const handleSubmit = e => {
     e.preventDefault();
-    axiosWithAuth().post("/api/auth/login", user)
-    .then(res => {
-      console.log(res)
-      localStorage.setItem('token', res.data.token);
-      props.history.push("/home")
-    })
+    axiosWithAuth()
+      .post("/api/auth/login", user)
+      .then(res => {
+        console.log(res);
+        localStorage.setItem("token", res.data.token);
+        props.history.push("/home");
+      });
   };
 
   return (
     <div>
       <form onSubmit={handleSubmit}>
-        <div>
-          <span>Name: </span>
-          <input
-            type="text"
-            name="name"
-            onChange={e => {
-              setusername(e.target.value);
-            }}
-          />
-        </div>
-        <div>
-          <span>Password: </span>
-          <input
-            type="password"
-            name="password"
-            onChange={e => {
-              setuserpass(e.target.value);
-            }}
-          />
-        </div>
-        <button value="Submit" type="submit">
-          Submit
-        </button>
+        <MyDiv>
+          <div>
+            <span>Name: </span>
+            <input
+              type="text"
+              name="name"
+              onChange={e => {
+                setusername(e.target.value);
+              }}
+            />
+          </div>
+          <div>
+            <span>Password: </span>
+            <input
+              type="password"
+              name="password"
+              onChange={e => {
+                setuserpass(e.target.value);
+              }}
+            />
+          </div>
+          <button value="Submit" type="submit">
+            Submit
+          </button>
+          <NavLink to="Register/">
+            <button>Register</button>
+          </NavLink>
+        </MyDiv>
       </form>
-      <NavLink to="Register/">
-        <button>Register</button>
-      </NavLink>
     </div>
   );
 }

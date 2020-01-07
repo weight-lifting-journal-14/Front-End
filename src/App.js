@@ -1,23 +1,26 @@
 import React from "react";
 import { Route } from "react-router-dom";
 import { PrivateRoute } from "./PrivateRoute";
-import Login from "./login";
-import Register from "./RegisterPage";
+import Login from "./components/login";
+import Logout from "./logout";
+import Register from "./components/RegisterPage";
 import "./App.css";
 import NavBar from "./components/Navbar";
-import UserLog from './components/Forms/UserLog';
+import Home from "./components/Home";
+import Profile from "./components/Profile";
+
 
 function App() {
   return (
     <div className="App">
       <NavBar />
-      <UserLog/>
-      {/* <Route exact path="/">
-        <Login />
-      </Route> */}
-      <Route path="/Register">
-        <Register />
-      </Route>
+
+      <Route exact path="/" component={Login}/>
+      <Route path="/logout" component={Logout}/>
+      <Route path="/register" component={Register}/>
+      <Route path="/profile" component={Profile}/>
+      <PrivateRoute path="/home" component={Home}/>
+
     </div>
   );
 }

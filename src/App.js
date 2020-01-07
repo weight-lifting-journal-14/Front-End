@@ -8,19 +8,17 @@ import "./App.css";
 import NavBar from "./components/Navbar";
 import Home from "./components/Home";
 import Profile from "./components/Profile";
-
+import UserLog from "./components/Forms/UserLog";
 
 function App() {
   return (
     <div className="App">
       <NavBar />
-
       <Route exact path="/" component={Login}/>
       <Route path="/logout" component={Logout}/>
       <Route path="/register" component={Register}/>
       <Route path="/profile" component={Profile}/>
-      <PrivateRoute path="/home" component={Home}/>
-
+      <PrivateRoute path="/home" component={UserLog}/>
     </div>
   );
 }

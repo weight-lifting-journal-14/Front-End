@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
+
 import { MyDiv, Btn, Mycontent, Myinput } from "../Style";
+
 import { axiosWithAuth } from "../axiosAuth";
 import "../login.css";
 import img from "../img/loginPage.jpg";
@@ -24,6 +26,7 @@ function Login(props) {
       .then(res => {
         console.log(res);
         localStorage.setItem("token", res.data.token);
+        props.setAuthenticated(true);
         props.history.push("/home");
       });
   };

@@ -1,6 +1,10 @@
-import React, { useState } from "react";
+
+import React, { useEffect, useState } from "react";
 import { Button } from "reactstrap";
+
 import { axiosWithAuth } from "../axiosAuth";
+import { MyDiv2, Myinput, Mycontent, Btn } from "../Style";
+import img from "../img/regPage.jpg";
 
 function RegisterPage(props) {
   const [userName, setUserName] = useState("");
@@ -24,34 +28,42 @@ function RegisterPage(props) {
 
   return (
     <div>
-      <h1>Register Page</h1>
-      <form onSubmit={handleSubmit}>
-        <label>Name: </label>
-        <input
-          type="text"
-          placeholder="Name"
-          onChange={e => {
-            setUserName(e.target.value);
-          }}
-        />
-        <label>Password: </label>
-        <input
-          type="password"
-          placeholder="Password"
-          onChange={e => {
-            setUserPass(e.target.value);
-          }}
-        />
-        <label>Email: </label>
-        <input
-          type="email"
-          placeholder="Email"
-          onChange={e => {
-            setUserEmail(e.target.value);
-          }}
-        />
-        <button>Submit</button>
-      </form>
+      <Mycontent src={img} />
+      <MyDiv2>
+        <h1>Register Here:</h1>
+        <form onSubmit={handleSubmit}>
+          <div>
+            <Myinput
+              required
+              type="text"
+              placeholder="Enter Username"
+              onChange={e => {
+                setUserName(e.target.value);
+              }}
+            />
+          </div>
+          <div>
+            <Myinput
+              required
+              type="password"
+              placeholder="Enter Password"
+              onChange={e => {
+                setUserPass(e.target.value);
+              }}
+            />
+          </div>
+          <div>
+            <Myinput
+              type="email"
+              placeholder="Enter Email"
+              onChange={e => {
+                setUserEmail(e.target.value);
+              }}
+            />
+          </div>
+          <Btn>Submit</Btn>
+        </form>
+      </MyDiv2>
     </div>
   );
 }

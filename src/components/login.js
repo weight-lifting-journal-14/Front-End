@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
-import { MyDiv } from "./Style";
+import { MyDiv, Btn, Mycontent, Myinput } from "../Style";
 import { axiosWithAuth } from "../axiosAuth";
+import "../login.css";
+import img from "../img/loginPage.jpg";
 
 function Login(props) {
   const [username, setusername] = useState("");
@@ -28,11 +30,13 @@ function Login(props) {
 
   return (
     <div>
-      <form onSubmit={handleSubmit}>
-        <MyDiv>
+      <Mycontent src={img} />
+      <MyDiv>
+        <form onSubmit={handleSubmit}>
           <div>
-            <span>Name: </span>
-            <input
+            <Myinput
+              required
+              placeholder="Enter Username"
               type="text"
               name="name"
               onChange={e => {
@@ -41,8 +45,9 @@ function Login(props) {
             />
           </div>
           <div>
-            <span>Password: </span>
-            <input
+            <Myinput
+              required
+              placeholder="Enter Password"
               type="password"
               name="password"
               onChange={e => {
@@ -50,14 +55,18 @@ function Login(props) {
               }}
             />
           </div>
-          <button value="Submit" type="submit">
-            Submit
-          </button>
-          <NavLink to="Register/">
-            <button>Register</button>
-          </NavLink>
-        </MyDiv>
-      </form>
+          <div>
+            <Btn value="Submit" type="submit">
+              Submit
+            </Btn>
+          </div>
+          <div>
+            <NavLink to="Register/">
+              <Btn>Register</Btn>
+            </NavLink>
+          </div>
+        </form>
+      </MyDiv>
     </div>
   );
 }

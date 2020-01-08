@@ -5,7 +5,7 @@ const UserLog = (props) => {
 
 
 
-  
+
   return (
     <Form>
       <FormGroup>
@@ -46,17 +46,6 @@ const UserLog = (props) => {
           name="datetime"
           id="targetRegion"
           placeholder="muscle group/body part"
-        />
-      </FormGroup>
-
-
-      <FormGroup>
-        <Label for="exampleSearch">Search</Label>
-        <Input
-          type="search"
-          name="search"
-          id="exampleSearch"
-          placeholder="search placeholder"
         />
       </FormGroup>
       <FormGroup>

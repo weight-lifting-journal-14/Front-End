@@ -3,15 +3,15 @@ import React from 'react'
 
 
 
-const Friends = (props) =>{
+const WorkOuts = (props) =>{
     return(
         <div>
-            <p>Name: {props.name}</p>
-            <p>Age: {props.age} </p>
-            <p>Email: {props.email}</p>
+            <p>ID: {props.id}</p>
+            <p>Reps: {props.sets} </p>
+            <p>Sets: {props.reps}</p>
 
         </div>
     )
 }
 
-export default Friends;
+export default WorkOuts;

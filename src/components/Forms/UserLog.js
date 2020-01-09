@@ -79,7 +79,7 @@ const UserLog = (props) => {
         </Input>
       </FormGroup>
       <FormGroup>
-      <Button>Submit</Button>
+      <Button type="submit">Submit</Button>
       </FormGroup>
     </Form>
   );

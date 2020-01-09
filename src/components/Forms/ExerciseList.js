@@ -5,11 +5,11 @@ import UserLog from './UserLog';
 
 export default function ExerciseList(props) {
 
-    const [friends, setFriends] = useState([])
+    const [workouts, setFriends] = useState([])
 
 
     const getData = () =>{
-        axiosWithAuth().get('/workouts')
+        axiosWithAuth().get('api/w-e')
         .then(res => {
             setFriends(res.data)
              console.log(res.data)
@@ -26,14 +26,16 @@ export default function ExerciseList(props) {
 
     return (
         <div>
-         <h3>Friends</h3>
-         <UserLog/>
+         <h3>WorkOut History</h3>
+         {/* <UserLog/> */}
          <div>
          {
-             friends.map(each => (
+             workouts.map(each => (
                  <div>
                 <WorkOuts
-                 name={each.name} age={each.age} email={each.email} />
+                 id={each.id} 
+                 sets={each.sets} 
+                 reps={each.reps} />
                 </div>
              ))
          }

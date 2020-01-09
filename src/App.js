@@ -10,6 +10,7 @@ import Home from "./components/Home";
 import Profile from "./components/Profile";
 import UserLog from "./components/Forms/UserLog";
 import ExerciseList from "./components/Forms/ExerciseList";
+import WorkOuts from './components/Forms/WorkOuts';
 
 function App() {
   return (
@@ -18,8 +19,8 @@ function App() {
       <Route exact path="/" component={Login}/>
       <Route path="/logout" component={Logout}/>
       <Route path="/register" component={Register}/>
-      <Route path="/profile" component={Profile}/>
-      <PrivateRoute path="/home" component={ExerciseList}/>
+      <Route path="/profile" component={ExerciseList}/>
+      <PrivateRoute path="/home" component={UserLog}/>
     </div>
   );
 }

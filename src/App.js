@@ -21,8 +21,13 @@ function App() {
       path="/logout" 
       render={(props) => <Logout {...props} setAuthenticated={setAuthenticated}/>}/>
       <Route path="/register" component={Register}/>
+<<<<<<< HEAD
       <PrivateRoute path="/profile" component={Profile}/>
       <PrivateRoute path="/home" component={Home}/>
+=======
+      <Route path="/profile" component={ExerciseList}/>
+      <PrivateRoute path="/home" component={UserLog}/>
+>>>>>>> 401bbdd60b39cdd7537af190848595ec8fbf79e9
     </div>
   );
 }

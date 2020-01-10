@@ -1,11 +1,10 @@
 import React from 'react';
+import UserLog from './Forms/UserLog';
 
 const Home = () => {
     return(
         <div>
-            <p>
-                Protected page
-            </p>
+            <UserLog/>
         </div>
     )
 }

@@ -1,12 +1,18 @@
 import React from 'react';
-import { Form, FormGroup, Label, Input, FormText, Button } from 'reactstrap';
+import { Form, FormGroup, Label, Input, Button } from 'reactstrap';
+import './userlog.css';
 
 const UserLog = (props) => {
+
+
+
+
   return (
+   <div className="userlog"> 
     <Form>
       <FormGroup>
         <Label for="exampleEmail">Workout Journal</Label>
-        <Input plaintext value="Unsure if this will stay" />
+      
       </FormGroup>
       <FormGroup>
         <Label for="exampleDate">Date</Label>
@@ -44,17 +50,6 @@ const UserLog = (props) => {
           placeholder="muscle group/body part"
         />
       </FormGroup>
-
-
-      <FormGroup>
-        <Label for="exampleSearch">Search</Label>
-        <Input
-          type="search"
-          name="search"
-          id="exampleSearch"
-          placeholder="search placeholder"
-        />
-      </FormGroup>
       <FormGroup>
         <Label for="repSelect">Reps</Label>
         <Input type="select" name="select" id="repSelect">
@@ -86,9 +81,11 @@ const UserLog = (props) => {
         </Input>
       </FormGroup>
       <FormGroup>
-      <Button>Submit</Button>
+      <Button type="submit">Add</Button>
+      
       </FormGroup>
     </Form>
+    </div>
   );
 }
 

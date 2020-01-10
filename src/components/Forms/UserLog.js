@@ -1,5 +1,6 @@
 import React from 'react';
-import { Form, FormGroup, Label, Input, FormText, Button } from 'reactstrap';
+import { Form, FormGroup, Label, Input, Button } from 'reactstrap';
+import './userlog.css';
 
 const UserLog = (props) => {
 
@@ -7,10 +8,11 @@ const UserLog = (props) => {
 
 
   return (
+   <div className="userlog"> 
     <Form>
       <FormGroup>
         <Label for="exampleEmail">Workout Journal</Label>
-        <Input plaintext value="Unsure if this will stay" />
+      
       </FormGroup>
       <FormGroup>
         <Label for="exampleDate">Date</Label>
@@ -79,9 +81,11 @@ const UserLog = (props) => {
         </Input>
       </FormGroup>
       <FormGroup>
-      <Button type="submit">Submit</Button>
+      <Button type="submit">Add</Button>
+      
       </FormGroup>
     </Form>
+    </div>
   );
 }
 

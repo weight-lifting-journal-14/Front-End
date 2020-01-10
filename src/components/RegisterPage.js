@@ -1,55 +1,69 @@
-import React, { useEffect, useState } from "react";
-import { axiosWithAuth } from '../axiosAuth';
 
-function RegisterPage() {
+import React, { useEffect, useState } from "react";
+import { Button } from "reactstrap";
+
+import { axiosWithAuth } from "../axiosAuth";
+import { MyDiv2, Myinput, Mycontent, Btn } from "../Style";
+import img from "../img/regPage.jpg";
+
+function RegisterPage(props) {
   const [userName, setUserName] = useState("");
   const [userPass, setUserPass] = useState("");
   const [userEmail, setUserEmail] = useState("");
 
   const user = {
-    id: Date.now(),
     username: userName,
-    password: userPass,
-  }
+    password: userPass
+  };
 
   const handleSubmit = e => {
     e.preventDefault();
-    axiosWithAuth().post("/api/auth/register", user)
-    .then(res => {
-      console.log(res)
-    })
-  }
+    axiosWithAuth()
+      .post("/api/auth/register", user)
+      .then(res => {
+        console.log(res);
+        props.history.push("/");
+      });
+  };
 
   return (
     <div>
-      <h1>Register Page</h1>
-      <form onSubmit={handleSubmit}>
-        <label>Name: </label>
-        <input
-          type="text"
-          placeholder="Name"
-          onChange={e => {
-            setUserName(e.target.value);
-          }}
-        />
-        <label>Password: </label>
-        <input
-          type="password"
-          placeholder="Password"
-          onChange={e => {
-            setUserPass(e.target.value);
-          }}
-        />
-        <label>Email: </label>
-        <input
-          type="email"
-          placeholder="Email"
-          onChange={e => {
-            setUserPass(e.target.value);
-          }}
-        />
-        <button>Submit</button>
-      </form>
+      <Mycontent src={img} />
+      <MyDiv2>
+        <h1>Register Here:</h1>
+        <form onSubmit={handleSubmit}>
+          <div>
+            <Myinput
+              required
+              type="text"
+              placeholder="Enter Username"
+              onChange={e => {
+                setUserName(e.target.value);
+              }}
+            />
+          </div>
+          <div>
+            <Myinput
+              required
+              type="password"
+              placeholder="Enter Password"
+              onChange={e => {
+                setUserPass(e.target.value);
+              }}
+            />
+          </div>
+          <div>
+            <Myinput
+              type="email"
+              placeholder="Enter Email"
+              onChange={e => {
+                setUserEmail(e.target.value);
+              }}
+            />
+          </div>
+          <Btn>Submit</Btn>
+        </form>
+      </MyDiv2>
     </div>
   );
 }

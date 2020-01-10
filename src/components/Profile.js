@@ -1,11 +1,10 @@
 import React from 'react';
+import ExerciseList from './Forms/ExerciseList';
 
 const Profile = () => {
     return(
         <div>
-            <p>
-                Profile page
-            </p>
+            <ExerciseList/>
         </div>
     )
 }

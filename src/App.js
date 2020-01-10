@@ -8,6 +8,8 @@ import "./App.css";
 import NavBar from "./components/Navbar";
 import Home from "./components/Home";
 import Profile from "./components/Profile";
+import ExerciseList from './components/Forms/ExerciseList';
+import UserLog from './components/Forms/UserLog'
 
 function App() {
   const [isAuthenticated, setAuthenticated] = useState(false);
@@ -21,13 +23,8 @@ function App() {
       path="/logout" 
       render={(props) => <Logout {...props} setAuthenticated={setAuthenticated}/>}/>
       <Route path="/register" component={Register}/>
-<<<<<<< HEAD
-      <PrivateRoute path="/profile" component={Profile}/>
-      <PrivateRoute path="/home" component={Home}/>
-=======
       <Route path="/profile" component={ExerciseList}/>
       <PrivateRoute path="/home" component={UserLog}/>
->>>>>>> 401bbdd60b39cdd7537af190848595ec8fbf79e9
     </div>
   );
 }

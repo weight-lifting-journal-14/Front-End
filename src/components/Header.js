@@ -35,8 +35,9 @@ const WorkoutsHeader = () => {
   return (
     <div>
     <HeaderNav>
-    <NavLink to="#page-top">Back to Top</NavLink>
     <NavLink to="/register">Register</NavLink>
+    <NavLink to="/about">About</NavLink>
+    <NavLink to="/home">Home</NavLink>
     </HeaderNav> 
     </div>
   )

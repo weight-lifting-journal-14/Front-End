@@ -105,8 +105,8 @@ const Login = props => {
   const handleSubmit = event => {
     event.preventDefault();
     props.login(login);
-    // props.history.push("/workouts");
-    // setLogin({ username: "", password: "" });
+    props.history.push("/workouts");
+    setLogin({ username: "", password: "" });
   };
   return (
     <MainWrapper>

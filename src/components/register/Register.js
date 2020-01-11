@@ -98,8 +98,8 @@ function Register(props) {
   const handleSubmit = e => {
     e.preventDefault();
     props.register(login)
-    // props.history.push("/tabs");
-  //  setlogin({username: '', password: '' });
+    props.history.push("/workouts");
+    setLogin({username: '', password: '' });
   };
 
   return (

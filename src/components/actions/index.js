@@ -75,6 +75,8 @@ export const loadWorkouts = (id) => dispatch => {
 
 export const addWorkouts = (newWorkout) => dispatch => {
     dispatch({type: ADDWORKOUTS_START });
+    console.log(newWorkout)
+    newWorkout.user_id = parseInt(localStorage.getItem('user'))
     axiosWithAuth()
     .post(`/Workouts/`, newWorkout)
     .then(res => {

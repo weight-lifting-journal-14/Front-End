@@ -104,7 +104,7 @@ const Workouts = ({id,loadWorkouts,workouts,addWorkouts,logout,history,updateWor
     if(editWorkout){
       updateWorkout(id, editWorkout.id, workoutForm)
     }else{
-      addWorkouts(id,workoutForm);
+      addWorkouts(workoutForm);
     }
   }
   const handleEdit = (workout) => {
@@ -125,9 +125,8 @@ const Workouts = ({id,loadWorkouts,workouts,addWorkouts,logout,history,updateWor
       <h1>Create Workout</h1>
       <FormWrapper>
       <form onSubmit={handleSubmit}>
-        <Input type ='text' name='id' value={workoutForm.id} onChange={handleChange} placeholder = 'id'></Input>
         <Input type ='text' name='name' value={workoutForm.name} onChange={handleChange} placeholder= 'Name'></Input>
-        <Input type ='text' name='user_id' value={workoutForm.user_id} onChange={handleChange} placeholder= 'user_id'></Input>
+
         <ButtonWrapper>
         <Button type = 'submit'>Submit</Button>
         <Button onClick={() => {handleLogout()}}>Logout</Button>
@@ -157,36 +156,5 @@ const Workouts = ({id,loadWorkouts,workouts,addWorkouts,logout,history,updateWor
 const mapStateToProps = (state) => {
   return {...state}
 }
-// export default connect(mapStateToProps, {loadWorkouts})(Workouts);
 
-
-
-// import React, {useState} from "react";
-// import WorkoutsFooter from "./WorkoutsFooter";
-// import WorkoutsHeader from "./WorkoutsHeader";
-// import CreateWorkout from "./CreateWorkout";
-// import WorkoutLayout from "./WorkoutLayout";
-
-// const Workouts = () => {
-//   const [Workout, setWorkout] = useState([])
-
-//   const addNewWorkout = note => {
-//     setWorkout([...Workout, note])
-//   }
-//   return (
-//     <div>
-//       <WorkoutsHeader/>
-//       <CreateWorkout addNewWorkout= {addNewWorkout}/>
-//       {Workout.map((Workout, i) => <WorkoutLayout Workout = {Workout} key = {i}/>)}
-//       <WorkoutsFooter/>
-//     </div>
-//   )
-// }
-
-// const mapStateToProps = (state) => {
-//    return {...state}
-// }
-
-// export default connect(mapStateToProps, {loadWorkouts})(Workouts);
-
-export default connect(mapStateToProps, {loadWorkouts,addWorkouts,logout,})(Workouts);
+export default connect(mapStateToProps, {loadWorkouts,addWorkouts,logout, updateWorkout, deleteWorkout})(Workouts);

@@ -1,68 +1,703 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## API Documentation
+**BASE URL** https://w-l-j.herokuapp.com
+- Attach endpoints to the end of the base URL in order to make HTTP Requests.
 
-## Available Scripts
+### Table of Contents
+Endpoints that do _**not**_ require authentication (Not Protected):
 
-In the project directory, you can run:
+| Requests        | Endpoints          | Description
+|-----------------|--------------------|--------------------|
+|<a href="#register">POST Registration</a>  | /api/auth/register | <b>POST</b> request to register new user
+|<a href="#login">POST Login</a>            | /api/auth/login|  <b>POST</b> request to login new user
 
-### `yarn start`
+Endpoints that **_DO_** require authentication (Protected):
+<b>GET</b> request endpoints:
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+| Requests         | Endpoints | Description
+|----------------- | --------------------|---------------------|
+|<a href="#users">GET Users</a>                    | /api/users |<b>GET</b> request to get all users
+|<a href="#userID">GET User By ID</a>              | /api/users/:id | <b>GET</b> by user id gets user by id
+|<a href="#all Workouts">GET All workouts</a>       | /api/workouts | <b>GET</b> request get all workouts
+|<a href="#workoutID">GET Workout by ID</a>        | /api/workouts/:id | <b>GET</b> request to get all workouts by thier ID
+|<a href="#exercises">GET exercises</a>            | /api/exercises | <b>GET</b> request to get all exercises
+|<a href="#exerciseById">GET exercises by ID</a>    | /api/exercises/:id| <b>GET</b> request to get exercises by thier ID
+|<a href="#get workouts_exercises">GET workouts_exercises</a>              | /api/w-e | <b>GET</b> request to get all workouts_exercises  
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+<b>POST</b> request endpoints:
 
-### `yarn test`
+| Requests         | Endpoints | Description
+|----------------- | --------------------|---------------------|
+|<a href="#workouts">POST workout</a>                    | /api/workouts |<b>POST</b> request to add new workout
+|<a href="#exerciese">POST exercise</a>              | /api/exercises | <b>POST</b> request to add new exercise
+|<a href="#workouts_exercise">POST workouts_exercises</a>       | /api/w-e | <b>POST</b> request to add new Workouts_exercises
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+<b>PUT</b> request endpoints:
 
-### `yarn build`
+| Requests         | Endpoints | Description
+|----------------- | --------------------|---------------------|
+|<a href="#edit a workout">PUT workout by ID</a>                    | /api/workouts/:id |<b>PUT</b> request to edit a workout
+|<a href="#edit a exercise">PUT exercise by ID</a>                    | /api/exercise/:id |<b>PUT</b> request to edit a workout
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+<b>DEL</b> request endpoints:
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+| Requests         | Endpoints | Description
+|----------------- | --------------------|---------------------|
+|<a href="#delete user">DEL user by ID</a>                    | /api/users/:id |<b>POST</b> request to delete user by ID
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `yarn eject`
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+<hr />
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+<div id="register"></div>
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+## [POST] Registration 
 
-## Learn More
+<a href="#top">Return to the top</a>
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+URL: https://w-l-j.herokuapp.com/api/auth/register
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### Request body should include: 
+| Input (Case Sensitive)           | Input Type          |
+|-----------------|--------------------|
+|username (required)           | string (4+ characters) |
+|password (required)       | string (4+ characters)    |
 
-### Code Splitting
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+_An example of how the body should appear:_
 
-### Analyzing the Bundle Size
+```js
+{
+	"username": "carly",
+	"password": "carly"
+}
+```
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
+### What will be returned:
 
-### Making a Progressive Web App
+_You will receive the user object an a JWT._
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
+```js
+{
+  "id": 11,
+  "username": "carly",
+  "workouts": []
+}
+```
 
-### Advanced Configuration
+<hr />
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
+<div id="login"></div>
 
-### Deployment
+## [POST] Log In
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
+<a href="#top">Return to the top</a>
 
-### `yarn build` fails to minify
+**URL:** https://w-l-j.herokuapp.com/api/auth/login
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+### Request body should include: 
+| Input (Case Sensitive)           | Input Type          |
+|-----------------|--------------------|
+|name (required)           | string (4+ characters) |
+|password (required)       | string (8+ characters)    |
+
+_An example of how the body should appear:_
+
+```js
+{
+	"username": "carly",
+	"password": "carly"
+}
+```
+
+### What will be returned:
+
+_You will receive the user_id, and a JWT. and a message saying welcome
+
+```js
+{
+{
+  "id": 10,
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImphZGUgU2F2YWdlIiwiaWF0IjoxNTc4NTEwMzEwLCJleHAiOjE1Nzg1OTY3MTB9.PubFmKU1nI3IbiYc5uMq7hwMtOQGztQ5roYzIOKlxoo",
+  "message": "Welcome carly!"
+}
+```
+
+<hr />
+
+<div id="users"></div>
+
+## [GET] Users
+
+<a href="#top">Return to the top</a>
+
+URL: https://w-l-j.herokuapp.com/api/users
+
+### What will be returned:
+_An array of all users within the database._
+```js
+[
+  {
+    "id": 11,
+    "username": "carly"
+  },
+  {
+    "id": 4,
+    "username": "elizabeth2"
+  },
+  {
+    "id": 2,
+    "username": "jade"
+  },
+  {
+    "id": 10,
+    "username": "jade Savage"
+  },
+  {
+    "id": 3,
+    "username": "lilly"
+  },
+  {
+    "id": 1,
+    "username": "maddy"
+  },
+  {
+    "id": 7,
+    "username": "savanna"
+  },
+  {
+    "id": 8,
+    "username": "savanna2"
+  },
+  {
+    "id": 9,
+    "username": "savanna23"
+  }
+]
+```
+
+<hr />
+
+
+<div id="userID"></div>
+
+## [GET] User by ID
+
+<a href="#top">Return to the top</a>
+
+URL: https://w-l-j.herokuapp.com/api/users/:id
+
+**NOTE:** Be sure to include the `id` of an existing user on the end of the endpoint.
+
+### What will be returned:
+_An object of the user information._
+
+```js
+{
+  "id": 2,
+  "username": "jade",
+  "workouts": [
+    {
+      "id": 4,
+      "name": "workout name",
+      "exercises": 0
+    },
+    {
+      "id": 5,
+      "name": "leg Workout",
+      "exercises": 0
+    },
+    {
+      "id": 6,
+      "name": "arm Workout",
+      "exercises": 1
+    }
+  ]
+}
+```
+
+<hr />
+
+<div id="All workouts"></div>
+
+
+## [GET] All workouts
+
+<a href="#top">Return to the top</a>
+
+URL: https://w-l-j.herokuapp.com/api/workouts
+
+**NOTE:** returns all workouts in database for all users
+
+### What will be returned:
+_An object of the workouts information._
+
+```js
+[
+  {
+    "id": 1,
+    "name": "workout name",
+    "date": null,
+    "user_id": 1
+  },
+  {
+    "id": 2,
+    "name": "leg Workout",
+    "date": null,
+    "user_id": 1
+  },
+  {
+    "id": 3,
+    "name": "arm Workout",
+    "date": null,
+    "user_id": 1
+  },
+  {
+    "id": 4,
+    "name": "workout name",
+    "date": null,
+    "user_id": 2
+  },
+  {
+    "id": 5,
+    "name": "leg Workout",
+    "date": null,
+    "user_id": 2
+  },
+  {
+    "id": 6,
+    "name": "arm Workout",
+    "date": null,
+    "user_id": 2
+  },
+]
+```
+
+<hr />
+
+## [GET] Workout by ID
+
+<a href="#top">Return to the top</a>
+
+URL: https://w-l-j.herokuapp.com/api/workouts/:id
+
+**NOTE:** returns all workouts in database by id
+
+### What will be returned:
+_An object of the workout by id._
+
+```js
+{
+  "id": 11,
+  "name": "brain Workout",
+  "date": null,
+  "user_id": 10
+}
+```
+
+<hr />
+
+<div id="AllExercises"></div>
+
+
+## [GET] All Exercises
+
+<a href="#top">Return to the top</a>
+
+URL: https://w-l-j.herokuapp.com/api/exercises
+
+**NOTE:** returns all exercises in database
+
+### What will be returned:
+_An object of the exercise information._
+
+```js
+[
+  {
+    "id": 1,
+    "name": "Squats",
+    "region": "Quads"
+  },
+  {
+    "id": 2,
+    "name": "Curls",
+    "region": "Biceps"
+  },
+  {
+    "id": 3,
+    "name": "Pushups",
+    "region": "Chest"
+  },
+  {
+    "id": 4,
+    "name": "Lunges",
+    "region": "Hamstrings"
+  },
+  {
+    "id": 5,
+    "name": "Pull Ups",
+    "region": "Back"
+  },
+  {
+    "id": 6,
+    "name": "testExercises",
+    "region": "brain"
+  },
+  {
+    "id": 7,
+    "name": "testExercises2",
+    "region": "brain"
+  }
+]
+```
+
+<hr />
+
+<div id="exerciseById"></div>
+
+## [GET] All Exercises by id
+
+<a href="#top">Return to the top</a>
+
+URL: https://w-l-j.herokuapp.com/api/exercises/:id
+
+**NOTE:** returns exercises by exercise_id
+
+### What will be returned:
+_An object of the exercises by id._
+
+```js
+{
+  "name": "Pushups",
+  "region": "Chest"
+}
+```
+
+<hr />
+
+<div id="get workouts_exercises"></div>
+
+## [GET] All workoutExercises
+
+<a href="#top">Return to the top</a>
+
+URL: https://w-l-j.herokuapp.com/api/w-e
+
+**NOTE:** returns all workoutExercises in database
+
+### What will be returned:
+_An object of the workoutsexercise information._
+
+```js
+[
+  {
+    "id": 1,
+    "reps": 10,
+    "sets": 10,
+    "workout_id": 1,
+    "exercise_id": 1
+  },
+  {
+    "id": 2,
+    "reps": 10,
+    "sets": 10,
+    "workout_id": 1,
+    "exercise_id": 2
+  },
+  {
+    "id": 3,
+    "reps": 10,
+    "sets": 10,
+    "workout_id": 1,
+    "exercise_id": 3
+  },
+  {
+    "id": 4,
+    "reps": 10,
+    "sets": 10,
+    "workout_id": 2,
+    "exercise_id": 1
+  },
+  {
+    "id": 5,
+    "reps": 10,
+    "sets": 10,
+    "workout_id": 2,
+    "exercise_id": 2
+  },
+  {
+    "id": 6,
+    "reps": 10,
+    "sets": 10,
+    "workout_id": 2,
+    "exercise_id": 3
+  },
+ 
+]
+```
+
+<hr />
+
+<hr />
+
+<div id="workout"></div>
+
+## [POST] post workout 
+
+<a href="#top">Return to the top</a>
+
+URL: https://w-l-j.herokuapp.com/api/workouts
+
+### Request body should include: 
+| Input (Case Sensitive)           | Input Type          |
+|-----------------|--------------------|
+|name (required)           | string |
+|user_id (required)       | integer    |
+
+
+_An example of how the body should appear:_
+
+```js
+  {
+    "name": "testing workout",
+    "user_id": 10
+  }
+```
+
+### What will be returned:
+
+workouts id will be returned 
+
+```js
+[
+  16
+]
+```
+
+<hr />
+
+<div id="exercise"></div>
+
+## [POST] exercise
+
+<a href="#top">Return to the top</a>
+
+URL: https://w-l-j.herokuapp.com/api/exercises
+
+### Request body should include: 
+| Input (Case Sensitive)           | Input Type          |
+|-----------------|--------------------|
+|name (required)           | string |
+|region (required)       | string   |
+
+
+_An example of how the body should appear:_
+
+```js
+  {
+    "name": "Coding",
+    "region": "the brain"
+  }
+```
+
+### What will be returned:
+
+exercise id will be returned
+
+```js
+[
+  9
+]
+```
+
+<hr />
+
+<div id="workouts_exercise"></div>
+
+## [POST] workouts_exercise
+
+<a href="#top">Return to the top</a>
+
+URL: https://w-l-j.herokuapp.com/api/w-e
+
+### Request body should include: 
+| Input (Case Sensitive)           | Input Type          |
+|-----------------|--------------------|
+|reps (required)            | integer   |
+|sets(required)             | integer   |
+|workouts_id(required)      | integer   |
+|sets(required)             | integer   |
+
+_An example of how the body should appear:_
+
+```js
+
+    "reps": 10,
+    "sets": 10,
+    "workout_id": 6,
+    "exercise_id": 7
+}
+
+```
+
+### What will be returned:
+
+workouts_exercise id will be returned
+
+```js
+[
+  11
+]
+```
+
+<hr />
+
+
+<div id="edit a workout"></div>
+
+## [PUT] workouts by ID
+
+<a href="#top">Return to the top</a>
+
+URL: https://w-l-j.herokuapp.com/api/workouts/:id
+
+### Request body should include: 
+| Input (Case Sensitive)           | Input Type          |
+|-----------------|--------------------|
+|name (required)            | string    |
+|user_id (optional)         | integer   |
+
+_An example of how the body should appear:
+
+```js
+{
+  "name": "brainworkout",
+	"user_id": 2
+}
+```
+
+### What will be returned:
+
+message saying the workout of the targeted id was changed, the workout_id and the changes made and by which user
+
+```js
+{
+  "message": "workout of id: 11 was changed",
+  "workout": 1,
+  "changes": {
+    "name": "brainworkout",
+    "user_id": 2
+  }
+}
+```
+
+<hr />
+
+<div id="edit a workouts_exercise"></div>
+
+## [PUT] workouts_exercise by ID
+
+<a href="#top">Return to the top</a>
+
+URL: https://w-l-j.herokuapp.com/api/w-e/:id
+
+### Request body should include: 
+| Input (Case Sensitive)           | Input Type          |
+|-----------------|--------------------|
+|reps (required)            | string |
+|sets (required)            | string   |
+|workout_id (optional)      | integer|
+|sets (optional)            | integer  |
+
+
+_An example of how the body should appear:
+
+```js
+{
+    "reps": 11,
+    "sets": 11,
+    "workout_id": 4,
+    "exercise_id": 4
+}
+```
+
+### What will be returned:
+
+message saying the workout of the targeted id was changed, the workout_id and the changes made and by which user
+
+```js
+{
+  "message": "workouts_exercise of id: 1 was changed",
+  "Workouts_exercise": 1,
+  "changes": {
+    "reps": 11,
+    "sets": 11,
+    "workout_id": 4,
+    "exercise_id": 4
+  }
+}
+```
+<div id="edit a exercise"></div>
+
+## [PUT] exercise by ID
+
+<a href="#top">Return to the top</a>
+
+URL: https://w-l-j.herokuapp.com/api/exercise/:id
+
+### Request body should include: 
+| Input (Case Sensitive)           | Input Type          |
+|-----------------|--------------------|
+|name (required)            | string    |
+|region (required)          | string   |
+
+_An example of how the body should appear:
+
+```js
+  {
+    "name": "changing squats",
+    "region": "changing quads"
+  }
+```
+
+### What will be returned:
+
+message saying the workout of the targeted id was changed, the workout_id and the changes made and by which user
+
+```js
+{
+  "message": "exercise of id: 1 was changed",
+  "exercise": 1,
+  "changes": {
+    "name": "changing squats",
+    "region": "changing quads"
+  }
+}
+```
+
+<div id="delete user"></div>
+
+## [DEL] User by ID
+
+<a href="#top">Return to the top</a>
+
+URL: https://w-l-j.herokuapp.com/api/users/:id
+
+_An example of how the endpoint should appear:_
+
+```js
+https://w-l-j.herokuapp.com/api/users/7
+```
+
+### What will be returned:
+
+message saying user was deleted and number of users removed
+
+```js
+{
+  "message": "user deleted",
+  "removed": 1
+}
+```
+
+<hr />

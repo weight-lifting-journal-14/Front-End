@@ -1,8 +1,7 @@
 import React from 'react';
 import PrivateRoute from './components/privateRoute/PrivateRoute'
-import {Route, Switch} from 'react-router-dom';
+import {Route} from 'react-router-dom';
 import Login from '../src/components/login/Login'
-import Nav from '../src/components/Navbar'
 import Header from '../src/components/Header'
 import Register from './components/register/Register';
 import Workouts from './components/Home'

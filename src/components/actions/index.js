@@ -27,6 +27,7 @@ export const DELETE_FAIL = 'DELETE_FAIL';
 export const EDITWORKOUT_START = 'EDITWORKOUT_START';
 export const EDITWORKOUT_SUCCESS = 'EDITWORKOUT_SUCCESS';
 export const EDITWORKOUT_FAIL = 'EDITWORKOUT_FAIL';
+
 export const login = (credentials) => dispatch => {
     dispatch({type: LOGIN_START});
     const baseURL = 'https://w-l-j.herokuapp.com/api/auth'
@@ -61,12 +62,12 @@ export const register = (credentials) => dispatch => {
     })
 }
 
-export const loadWorkouts = (id) => dispatch => {
+export const loadWorkouts = (workouts, id) => dispatch => {
     dispatch({type: LOADWORKOUTS_START});
     axiosWithAuth()
-    .get(`/workouts/${id}`)
+    .get(`/workouts/${id}`, workouts)
     .then(res => {
-      console.log(res)
+      console.log(res.data)
         dispatch({type:LOADWORKOUTS_SUCCESS, payload: res.data.workouts})
     })
     .catch(err => {

@@ -112,9 +112,11 @@ const Workouts = ({id,loadWorkouts,workouts,addWorkouts,logout,history,updateWor
   }
   
   useEffect((loadWorkouts, id) => {
-    console.log(loadWorkouts)
+    
     loadWorkouts(id);
+    console.log(loadWorkouts)
  },[])
+
 
   useEffect(() => {
     if(editWorkout){
@@ -157,5 +159,6 @@ const Workouts = ({id,loadWorkouts,workouts,addWorkouts,logout,history,updateWor
 const mapStateToProps = (state) => {
   return {...state}
 }
+
 
 export default connect(mapStateToProps, {loadWorkouts,addWorkouts,logout, updateWorkout, deleteWorkout})(Workouts);

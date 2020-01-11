@@ -66,6 +66,7 @@ export const loadWorkouts = (id) => dispatch => {
     axiosWithAuth()
     .get(`/workouts/${id}`)
     .then(res => {
+      console.log(res)
         dispatch({type:LOADWORKOUTS_SUCCESS, payload: res.data.workouts})
     })
     .catch(err => {
@@ -80,7 +81,7 @@ export const addWorkouts = (newWorkout) => dispatch => {
     axiosWithAuth()
     .post(`/Workouts/`, newWorkout)
     .then(res => {
-      dispatch({type: ADDWORKOUTS_SUCCESS, payload: res.data.Workouts})
+      dispatch({type: ADDWORKOUTS_SUCCESS, payload: res.data.workouts})
     })
     .catch(err => {
       dispatch({type: ADDWORKOUTS_FAIL, payload: err})

@@ -112,6 +112,7 @@ const Workouts = ({id,loadWorkouts,workouts,addWorkouts,logout,history,updateWor
   }
   
   useEffect((loadWorkouts, id) => {
+    console.log(loadWorkouts)
     loadWorkouts(id);
  },[])
 

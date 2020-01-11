@@ -1,5 +1,5 @@
 import React from 'react';
-import PrivateRoute from './components/privateRoute/PrivateRoute'
+
 import {Route} from 'react-router-dom';
 import Login from '../src/components/login/Login'
 import Header from '../src/components/Header'

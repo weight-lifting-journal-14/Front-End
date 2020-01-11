@@ -4,7 +4,7 @@ import ExerciseList from './Forms/ExerciseList';
 const Profile = () => {
     return(
         <div>
-            <ExerciseList/>
+           
         </div>
     )
 }

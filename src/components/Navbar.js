@@ -1,53 +1,48 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import {
-  Collapse,
-  Navbar,
-  NavbarToggler,
-  NavbarBrand,
-  Nav,
-  NavItem,
-  NavLink,
-} from 'reactstrap';
 
-const NavBar = props => {
-    const [isOpen, setIsOpen] = useState(false);
-    const toggle = () => setIsOpen(!isOpen);
-    const isLoggedIn = () => {
+import React from "react";
+import {NavLink} from "react-router-dom";
+import styled from "styled-components";
 
-        return props.isAuthenticated ?
-          <Nav className="mr-auto" navbar>
-                <NavItem>
-                <NavLink tag={Link} to="/home">Home</NavLink>
-                </NavItem>
-                <NavItem>
-                <NavLink tag={Link} to="/profile">Profile</NavLink>
-                </NavItem>
-                <NavItem>
-                <NavLink tag={Link} to="/logout">Logout</NavLink>
-                </NavItem>
-            </Nav>
-    
-          :
-    
-          <Nav className="mr-auto" navbar>
-                <NavItem>
-                <NavLink tag={Link} to="/home">Home</NavLink>
-                </NavItem>
-                <NavItem>
-                <NavLink tag={Link} to="/">Login</NavLink>
-                </NavItem>
-            </Nav>
-      };
+const HeaderNav = styled.div`
+display: flex;
+width: 99%;
+justify-content: center;
+align-items: center;
+background-color: #19171785;
+justify-content: space-around;
+box-shadow: 7px 7px 3px #00000094;
 
-    return(
-        <div>
-            <Navbar color="light" light expand="md">
-                <NavbarBrand href="/">Weight Lifting Journal</NavbarBrand>
-                {isLoggedIn()}
-            </Navbar>
-        </div>
-    )
+
+height: 45px;
+a{
+ color:red;
+ padding: 0 10px;
+ text-decoration: none;
+ color: white;
+ font-size: 1.1rem;
+ font-weight: 600;
+ font-family: 'Noto Serif TC', serif;
+ &:hover {
+   color: black;
+ }
 }
-
-export default NavBar;
+@media screen and (max-width: 800px) {
+ height: 35px;
+}
+@media screen and (max-width: 650px) {
+ flex-direction: column;
+ height: 65px;
+ padding-bottom: 5px;
+}
+`
+const Nav = () => {
+ return (
+   <div>
+   <HeaderNav>
+   <NavLink to="/about">About</NavLink>
+   <NavLink to="/home">Home</NavLink>
+   </HeaderNav>
+   </div>
+ )
+}
+export default Nav;

@@ -4,16 +4,31 @@ import {connect} from 'react-redux';
 import {loadWorkouts, addWorkouts,logout, updateWorkout, deleteWorkout} from './actions/index';
 import styled from 'styled-components';
 
+const H1 = styled.h1`
+color: #3f048c;
+display: flex;
+text-align: center
+justify-content: center;
+font-size: 2.8rem;
+margin: 0;
+padding:2%;
+padding-bottom: 7%;
+font-family: 'Noto Serif TC', serif;
+`
 
+
+const MainWrapper = styled.div`
+background-color: #000000;
+`
 const Button = styled.button`
 padding: 3px 5px 3px 5px;
 margin: 3%;
 color: #fffafa;
-background: #22283a;
+background: #000000;
 border-radius: 5px;
 padding: 4px 8px 4px 8px;
 font-size: 0.9rem;
-border: 2px solid #dcdcdc;
+border: 2px solid #3f048c;
 margin-top:13%;
 &:hover {
   color: gray;
@@ -111,11 +126,11 @@ const Workouts = ({id,loadWorkouts,workouts,addWorkouts,logout,history,updateWor
     setEditWorkout(workout)
   }
   
-  useEffect((loadWorkouts, id) => {
+//   useEffect((loadWorkouts, id) => {
     
-    loadWorkouts(id);
-    console.log(loadWorkouts)
- },[])
+//     loadWorkouts(id);
+//     console.log(loadWorkouts)
+//  },[])
 
 
   useEffect(() => {
@@ -124,41 +139,42 @@ const Workouts = ({id,loadWorkouts,workouts,addWorkouts,logout,history,updateWor
     }
   },[editWorkout])
   return (
-    <div>
-      <h1>Create Workout</h1>
-      <FormWrapper>
-      <form onSubmit={handleSubmit}>
-        <Input type ='text' name='name' value={workoutForm.name} onChange={handleChange} placeholder= 'Name'></Input>
+    <MainWrapper>
+      <div>
+        <H1>Create Workout</H1>
+        <FormWrapper>
+        <form onSubmit={handleSubmit}>
+          <Input type ='text' name='name' value={workoutForm.name} onChange={handleChange} placeholder= 'Name'></Input>
 
-        <ButtonWrapper>
-        <Button type = 'submit'>Submit</Button>
-        <Button onClick={() => {handleLogout()}}>Logout</Button>
-        </ButtonWrapper>
-      </form>
-      </FormWrapper>
-      
-      {workouts.map(workout => {
-        return (
-        <CardWrap>
-        <Card>
-        <Ps href= {workout.id}>{workout.id}</Ps>
-        <Ps>{workout.name}</Ps>
-        <Ps>{workout.user_id}</Ps>
-        <ButtonWrap>
-        <Button onClick={() => deleteWorkout(id, workout.id)}>Delete Workout</Button>
-        <Button onClick={() => {handleEdit(workout)} }>Edit Workout</Button>
-        </ButtonWrap>
-        </Card>
-        </CardWrap>
-        )
-      })}
-      
-    </div>
+          <ButtonWrapper>
+          <Button type = 'submit'>Submit</Button>
+          <Button onClick={() => {handleLogout()}}>Logout</Button>
+          </ButtonWrapper>
+        </form>
+        </FormWrapper>
+        
+        {workouts.map(workout => {
+          return (
+          <CardWrap>
+          <Card>
+          <Ps href= {workout.id}>{workout.id}</Ps>
+          <Ps>{workout.name}</Ps>
+          <Ps>{workout.user_id}</Ps>
+          <ButtonWrap>
+          <Button onClick={() => deleteWorkout(id, workout.id)}>Delete Workout</Button>
+          <Button onClick={() => {handleEdit(workout)} }>Edit Workout</Button>
+          </ButtonWrap>
+          </Card>
+          </CardWrap>
+          )
+        })}
+        
+      </div>
+    </MainWrapper>
   )
 }
 const mapStateToProps = (state) => {
   return {...state}
 }
-
 
 export default connect(mapStateToProps, {loadWorkouts,addWorkouts,logout, updateWorkout, deleteWorkout})(Workouts);

@@ -54,10 +54,14 @@ export const register = (credentials) => dispatch => {
         console.log(res);
         localStorage.setItem('token', res.data.token);
         localStorage.setItem('user', res.data.id)
-        dispatch({type: REGISTER_SUCCESS, payload: res.data.id})
+        dispatch({
+          type: REGISTER_SUCCESS, 
+          payload: res.data.id})
     })
     .catch(err => {
-        dispatch({type: REGISTER_FAIL, payload: err})
+        dispatch({
+          type: REGISTER_FAIL, 
+          payload: err})
         console.log(err)
     })
 }
@@ -68,7 +72,9 @@ export const loadWorkouts = (workouts, id) => dispatch => {
     .get(`/workouts/${id}`, workouts)
     .then(res => {
       console.log(res.data)
-        dispatch({type:LOADWORKOUTS_SUCCESS, payload: res.data.workouts})
+        dispatch({
+          type:LOADWORKOUTS_SUCCESS, 
+          payload: res.data})
     })
     .catch(err => {
         dispatch({type: LOADWORKOUTS_FAIL, payload:err})

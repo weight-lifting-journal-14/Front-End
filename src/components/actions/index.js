@@ -69,7 +69,7 @@ export const register = (credentials) => dispatch => {
 export const loadWorkouts = (workouts, id) => dispatch => {
     dispatch({type: LOADWORKOUTS_START});
     axiosWithAuth()
-    .get(`/workouts/${id}`, workouts)
+    .get(`/workouts/${localStorage.getItem('user_id')}`, workouts)
     .then(res => {
       console.log(res.data)
         dispatch({

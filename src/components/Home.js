@@ -137,8 +137,6 @@ const Workouts = ({id,workouts,addWorkouts,loadWorkouts,logout,history,updateWor
   //   }
 
   useEffect((loadWorkouts, id) => {
-    let {workout} = loadWorkouts.workout
-    setData({name: workout.name, id:workout.id, user_id: workout.user_id})
     loadWorkouts(id);
     console.log(loadWorkouts)
  },[])

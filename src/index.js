@@ -5,11 +5,10 @@ import App from './App'
 import { BrowserRouter as Router } from 'react-router-dom';
 import {createStore, applyMiddleware} from 'redux';
 import {Provider} from 'react-redux';
-import reducer from './components/reducers/index'
 import thunk from 'redux-thunk'
 
 
-const store = createStore(reducer, applyMiddleware(thunk));
+const store = createStore(applyMiddleware(thunk));
 
 ReactDOM.render(
   <Router>

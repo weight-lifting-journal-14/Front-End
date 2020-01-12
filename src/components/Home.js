@@ -94,7 +94,7 @@ flex-direction: row;
 
 
 
-const Workouts = ({id,loadWorkouts,workouts,addWorkouts,logout,history,updateWorkout,deleteWorkout}) => {
+const Workouts = ({id,workouts,addWorkouts,loadWorkouts,logout,history,updateWorkout,deleteWorkout}) => {
 
   const handleLogout = () => {
     logout()
@@ -102,7 +102,7 @@ const Workouts = ({id,loadWorkouts,workouts,addWorkouts,logout,history,updateWor
     localStorage.removeItem('token');
     localStorage.removeItem('user');
   }
-
+  const [data, setData] = useState([])
   const [workoutForm, setWorkoutForm] = useState({id: '',name: '',date: '',user_id: ''});
   const [editWorkout, setEditWorkout] = useState(null);
   
@@ -126,11 +126,22 @@ const Workouts = ({id,loadWorkouts,workouts,addWorkouts,logout,history,updateWor
     setEditWorkout(workout)
   }
   
-//   useEffect((loadWorkouts, id) => {
-    
-//     loadWorkouts(id);
-//     console.log(loadWorkouts)
-//  },[])
+  // function loadWorkouts(url) {
+  //   const [data, setData] = useState([]);
+  //   const [loading, setLoading] = useState(true);
+  //   async function fetchWorkouts() {
+  //     const response = await fetch(id);
+  //     const json = await response.json();
+  //     setData(json);
+  //     setLoading(false);
+  //   }
+
+  useEffect((loadWorkouts, id) => {
+    let {workout} = loadWorkouts.workout
+    setData({name: workout.name, id:workout.id, user_id: workout.user_id})
+    loadWorkouts(id);
+    console.log(loadWorkouts)
+ },[])
 
 
   useEffect(() => {
